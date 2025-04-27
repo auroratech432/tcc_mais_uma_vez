@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gerenciar Notas - Gestão Escolar</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Gerenciar Notas</h1>
+  </header>
+
+  <nav>
+    <a href="dashboard.html">Dashboard</a>
+  </nav>
+
+  <div class="container">
+    <h2>Lançar Nova Nota</h2>
+    <form id="formNota">
+      <label for="aluno_id">Aluno ID:</label>
+      <input type="number" id="aluno_id" required>
+
+      <label for="disciplina">Disciplina:</label>
+      <input type="text" id="disciplina" required>
+
+      <label for="nota">Nota:</label>
+      <input type="number" id="nota" step="0.01" min="0" max="10" required>
+
+      <button type="submit">Lançar Nota</button>
+    </form>
+
+    <h2>Lista de Notas</h2>
+    <table id="tabelaNotas">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Aluno ID</th>
+          <th>Disciplina</th>
+          <th>Nota</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Notas serão preenchidas aqui -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    async function buscarNotas() {
+      try {
+        const response = await fetch('http://localhost:3000/api/notas');
+        const notas = await response.json();
+
+        const tabela = document.getElementById('tabelaNotas').querySelector('tbody');
+        tabela.innerHTML = '';
+
+        notas.forEach(nota => {
+          const row = `
+            <tr>
+              <td>${nota.id}</td>
+              <td>${nota.aluno_id}</td>
+              <td>${nota.disciplina}</td>
+              <td>${nota.nota}</td>
+            </tr>
+          `;
+          tabela.innerHTML += row;
+        });
+
+      } catch (error) {
+        console.error('Erro ao buscar notas:', error);
+      }
+    }
+
+    document.getElementById('formNota').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const aluno_id = document.getElementById('aluno_id').value;
+      const disciplina = document.getElementById('disciplina').value;
+      const nota = document.getElementById('nota').value;
+
+      try {
+        const response = await fetch('http://localhost:3000/api/notas', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ aluno_id, disciplina, nota })
+        });
+
+        if (response.ok) {
+          alert('Nota lançada com sucesso!');
+          document.getElementById('formNota').reset();
+          buscarNotas();
+        } else {
+          const data = await response.json();
+          alert(data.message || 'Erro ao lançar nota.');
+        }
+      } catch (error) {
+        console.error('Erro ao lançar nota:', error);
+      }
+    });
+
+    // Carregar notas ao abrir a página
+    buscarNotas();
+  </script>
+
+</body>
+</html>

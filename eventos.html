@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gerenciar Eventos - Gestão Escolar</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Gerenciar Eventos Escolares</h1>
+  </header>
+
+  <nav>
+    <a href="dashboard.html">Dashboard</a>
+  </nav>
+
+  <div class="container">
+    <h2>Cadastrar Novo Evento</h2>
+    <form id="formEvento">
+      <label for="titulo">Título:</label>
+      <input type="text" id="titulo" required>
+
+      <label for="descricao">Descrição:</label>
+      <textarea id="descricao" rows="3"></textarea>
+
+      <label for="data">Data do Evento:</label>
+      <input type="date" id="data" required>
+
+      <button type="submit">Cadastrar Evento</button>
+    </form>
+
+    <h2>Lista de Eventos</h2>
+    <table id="tabelaEventos">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Título</th>
+          <th>Descrição</th>
+          <th>Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Eventos serão preenchidos aqui -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    async function buscarEventos() {
+      try {
+        const response = await fetch('http://localhost:3000/api/eventos');
+        const eventos = await response.json();
+
+        const tabela = document.getElementById('tabelaEventos').querySelector('tbody');
+        tabela.innerHTML = '';
+
+        eventos.forEach(evento => {
+          const row = `
+            <tr>
+              <td>${evento.id}</td>
+              <td>${evento.titulo}</td>
+              <td>${evento.descricao || '-'}</td>
+              <td>${evento.data}</td>
+            </tr>
+          `;
+          tabela.innerHTML += row;
+        });
+
+      } catch (error) {
+        console.error('Erro ao buscar eventos:', error);
+      }
+    }
+
+    document.getElementById('formEvento').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const titulo = document.getElementById('titulo').value;
+      const descricao = document.getElementById('descricao').value;
+      const data = document.getElementById('data').value;
+
+      try {
+        const response = await fetch('http://localhost:3000/api/eventos', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ titulo, descricao, data })
+        });
+
+        if (response.ok) {
+          alert('Evento cadastrado com sucesso!');
+          document.getElementById('formEvento').reset();
+          buscarEventos();
+        } else {
+          const data = await response.json();
+          alert(data.message || 'Erro ao cadastrar evento.');
+        }
+      } catch (error) {
+        console.error('Erro ao cadastrar evento:', error);
+      }
+    });
+
+    // Carregar eventos ao abrir a página
+    buscarEventos();
+  </script>
+
+</body>
+</html>

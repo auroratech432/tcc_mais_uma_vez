@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login - Gestão Escolar</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Login no Sistema de Gestão Escolar</h1>
+  </header>
+
+  <div class="container">
+    <form id="loginForm">
+      <label for="email">Email:</label>
+      <input type="email" id="email" required>
+
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" required>
+
+      <button type="submit">Entrar</button>
+    </form>
+  </div>
+
+  <script>
+    // Script de login (simples)
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById('email').value;
+      const senha = document.getElementById('senha').value;
+
+      try {
+        const response = await fetch('http://localhost:3000/api/professores/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, senha })
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+          alert('Login realizado com sucesso!');
+          localStorage.setItem('token', data.token);
+          window.location.href = 'dashboard.html'; // Redireciona para o painel
+        } else {
+          alert(data.message || 'Erro no login.');
+        }
+      } catch (error) {
+        console.error('Erro no login:', error);
+        alert('Erro de conexão com o servidor.');
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gerenciar Turmas - Gestão Escolar</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Gerenciar Turmas</h1>
+  </header>
+
+  <nav>
+    <a href="dashboard.html">Dashboard</a>
+  </nav>
+
+  <div class="container">
+    <h2>Cadastrar Nova Turma</h2>
+    <form id="formTurma">
+      <label for="serie">Série:</label>
+      <input type="text" id="serie" required>
+
+      <label for="turma">Turma:</label>
+      <input type="text" id="turma" required>
+
+      <button type="submit">Cadastrar Turma</button>
+    </form>
+
+    <h2>Lista de Turmas</h2>
+    <table id="tabelaTurmas">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Série</th>
+          <th>Turma</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Turmas serão preenchidas aqui -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    async function buscarTurmas() {
+      try {
+        const response = await fetch('http://localhost:3000/api/turmas');
+        const turmas = await response.json();
+
+        const tabela = document.getElementById('tabelaTurmas').querySelector('tbody');
+        tabela.innerHTML = '';
+
+        turmas.forEach(turma => {
+          const row = `
+            <tr>
+              <td>${turma.id}</td>
+              <td>${turma.serie}</td>
+              <td>${turma.turma}</td>
+            </tr>
+          `;
+          tabela.innerHTML += row;
+        });
+
+      } catch (error) {
+        console.error('Erro ao buscar turmas:', error);
+      }
+    }
+
+    document.getElementById('formTurma').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const serie = document.getElementById('serie').value;
+      const turma = document.getElementById('turma').value;
+
+      try {
+        const response = await fetch('http://localhost:3000/api/turmas', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ serie, turma })
+        });
+
+        if (response.ok) {
+          alert('Turma cadastrada com sucesso!');
+          document.getElementById('formTurma').reset();
+          buscarTurmas();
+        } else {
+          const data = await response.json();
+          alert(data.message || 'Erro ao cadastrar turma.');
+        }
+      } catch (error) {
+        console.error('Erro ao cadastrar turma:', error);
+      }
+    });
+
+    // Carregar turmas ao abrir a página
+    buscarTurmas();
+  </script>
+
+</body>
+</html>
