@@ -1,0 +1,119 @@
+Perfeito, Janaina!  
+Vou reescrever agora o guia de forma **bem simples**, como se fosse para um **usuário iniciante** executar sem medo.  
+Estilo manual de instruções: **direto, amigável e sem termos técnicos complicados**.
+
+---
+
+# 📖 Guia Rápido para Rodar a Inteligência Artificial de Horários
+
+---
+
+## 📌 O que você vai fazer?
+Você vai gerar uma grade de horários para as turmas usando a Inteligência Artificial do sistema.
+
+É muito fácil! Basta seguir os passos abaixo:
+
+---
+
+## 🚀 Passo a Passo
+
+### 1. Abra o Terminal ou Prompt de Comando
+- No seu computador, procure e abra o **Prompt de Comando** (ou **Terminal** se usar Mac).
+
+---
+
+### 2. Vá até a pasta onde está o projeto
+- Digite o caminho até a pasta do projeto `gestao-escolar`, depois entre na pasta `ia`.
+
+Exemplo:
+```bash
+cd C:\Users\SeuNome\Documents\gestao-escolar\ia
+```
+
+(Só troque `SeuNome` pelo nome da sua pasta.)
+
+---
+
+### 3. Verifique se o Python está instalado
+Digite o seguinte comando:
+
+```bash
+python --version
+```
+ou
+```bash
+python3 --version
+```
+
+- Se aparecer algo como `Python 3.x.x`, está tudo certo.
+- Se der erro, é porque o Python não está instalado — aí precisa instalar primeiro (mas se já tiver, pode seguir).
+
+---
+
+### 4. Rode o comando para criar a grade
+Agora, ainda no terminal, digite:
+
+```bash
+python ia_horarios.py
+```
+ou
+```bash
+python3 ia_horarios.py
+```
+
+(dependendo de como o Python estiver instalado no seu computador).
+
+---
+
+### 5. Veja o resultado
+- O sistema vai criar um arquivo chamado **`grade_gerada.json`**.
+- Ele fica salvo dentro da pasta `ia`.
+
+Você vai ver a mensagem:
+```
+Grade de horários gerada e salva como 'grade_gerada.json'.
+```
+
+✅ Isso significa que a grade foi criada com sucesso!
+
+---
+
+## 🎯 O que fazer depois?
+
+- Você pode abrir o arquivo `grade_gerada.json` e ver todos os horários que foram gerados.
+- O próximo passo é **enviar essa grade** para o sistema (isso já está preparado para ser feito automaticamente pelo backend).
+
+---
+
+## 🛡️ Resumo Final
+
+| Passo | O que fazer | Resultado esperado |
+|:------|:------------|:-------------------|
+| 1 | Abrir o Prompt de Comando | Terminal aberto |
+| 2 | Ir para a pasta `/ia` | Localizado na pasta certa |
+| 3 | Verificar se tem Python | Versão do Python aparece |
+| 4 | Rodar `python ia_horarios.py` | Grade criada |
+| 5 | Confirmar o arquivo `grade_gerada.json` | Pronto para usar |
+
+---
+
+# ✅ Pronto!
+
+**Agora você já gerou a grade de horários!**  
+Se quiser, podemos também ensinar como carregar essa grade automaticamente para dentro do sistema depois.
+
+---
+
+# ✨ Explicação Extra (se quiser entender melhor)
+
+- O arquivo `grade_gerada.json` guarda a lista dos horários.
+- O sistema já tem uma função que sabe **ler** e **salvar** essa lista dentro do banco de dados.
+- Você não precisa fazer isso manualmente! O sistema cuida para você!
+
+---
+
+Quer que eu também já prepare agora um **guia do próximo passo**:  
+💬 **Como importar a grade para dentro do sistema** usando o botão de "Salvar Grade"? 🚀  
+Vai deixar tudo redondinho!
+
+Só confirmar que eu já faço o próximo! 🎯

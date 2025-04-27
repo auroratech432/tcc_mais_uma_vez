@@ -1,0 +1,224 @@
+Perfeito, Janaina!  
+Aqui está o conteúdo do **Guia_Deploy_Windows_IA.txt** — explicado de forma **bem detalhada**, focado em Windows e em alguém iniciante.
+
+Vou colocar aqui como um texto estruturado e fácil de seguir:
+
+---
+
+## 📄 Guia_Deploy_Windows_IA.txt
+
+---
+
+# 📖 Guia de Deploy: Sistema de Gestão Escolar com IA no Windows
+
+---
+
+## 🎯 Objetivo
+Este guia ensina como instalar e rodar o sistema completo de Gestão Escolar com IA no Windows.
+
+---
+
+## 📦 O que você precisa
+
+- ✅ Node.js instalado ([Download aqui](https://nodejs.org/))
+- ✅ MySQL instalado ([Download aqui](https://dev.mysql.com/downloads/installer/))
+- ✅ Python instalado ([Download aqui](https://www.python.org/))
+
+**Dica:** Se já tem eles instalados, pode pular direto para a instalação do sistema.
+
+---
+
+## 🚀 Passo a Passo Completo
+
+### 1. Baixar o Projeto
+- Salve a pasta completa do projeto `gestao-escolar` no seu computador.
+
+---
+
+### 2. Instalar o Banco de Dados
+
+- Abra o **MySQL Workbench** ou o seu gerenciador de banco favorito.
+- Importe o arquivo:
+
+```bash
+sql/banco_gestao_escolar_completo.sql
+```
+
+- Isso criará o banco de dados chamado:
+
+```bash
+sei_database
+```
+
+✅ Pronto! Banco criado.
+
+---
+
+### 3. Configurar a Conexão com o Banco
+
+- Vá até:
+
+```bash
+/backend/config/db.js
+```
+
+- Verifique se está assim:
+
+```javascript
+const mysql = require('mysql');
+
+const db = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',        // ou o usuário que você usa no MySQL
+  password: '',        // ou a senha do seu MySQL
+  database: 'sei_database'
+});
+
+db.connect((err) => {
+  if (err) {
+    console.error('Erro de conexão:', err);
+    return;
+  }
+  console.log('Conectado ao banco de dados MySQL.');
+});
+
+module.exports = db;
+```
+
+- Se precisar, ajuste o `user` e `password` conforme seu MySQL.
+
+---
+
+### 4. Instalar Dependências do Backend
+
+- Abra o **Prompt de Comando**.
+- Vá para a pasta `/backend`:
+
+```bash
+cd caminho\até\gestao-escolar\backend
+```
+
+- Instale as dependências:
+
+```bash
+npm install
+```
+
+✅ Agora as bibliotecas necessárias estão instaladas.
+
+---
+
+### 5. Iniciar o Backend
+
+- Ainda dentro da pasta `/backend`, rode:
+
+```bash
+npm start
+```
+ou
+
+```bash
+node server.js
+```
+
+- Você verá a mensagem:
+
+```
+Servidor rodando na porta 3000
+```
+
+✅ Backend funcionando.
+
+---
+
+### 6. Abrir o Frontend
+
+- Vá até a pasta:
+
+```bash
+/frontend/pages
+```
+
+- Abra o arquivo:
+
+```bash
+index.html
+```
+ou
+```bash
+login.html
+```
+
+- De preferência abra no navegador Google Chrome ou Edge.
+
+---
+
+### 7. Rodar a Inteligência Artificial de Horários
+
+Se quiser gerar uma grade de horários:
+
+- Abra o **Prompt de Comando**.
+- Vá até a pasta:
+
+```bash
+/gestao-escolar/ia
+```
+
+- Rode o comando:
+
+```bash
+python ia_horarios.py
+```
+
+- Isso cria o arquivo:
+
+```bash
+grade_gerada.json
+```
+
+✅ A IA gerou sua grade!
+
+---
+
+### 8. Importar a Grade para o Sistema
+
+- No Dashboard do sistema, vá para "Gerar Grade".
+- Clique para gerar a grade.
+- Ela será salva automaticamente no banco de dados.
+- Depois, será exibida na tabela de horários.
+
+---
+
+## 🛡️ Checklist Final
+
+| Etapa | Descrição | Status |
+|:-----|:----------|:------|
+| 1 | Banco de dados importado | ✅ |
+| 2 | Conexão com o banco ajustada no `db.js` | ✅ |
+| 3 | Dependências do backend instaladas (`npm install`) | ✅ |
+| 4 | Backend iniciado (`npm start`) | ✅ |
+| 5 | Frontend aberto no navegador | ✅ |
+| 6 | IA rodou (`python ia_horarios.py`) | ✅ |
+| 7 | Grade salva no sistema | ✅ |
+
+---
+
+# 🎯 Agora o sistema está funcionando!
+
+Parabéns!  
+Você tem uma solução completa de gestão escolar com IA de horários.
+
+---
+
+# 📢 Dicas Importantes
+
+- Se algo não funcionar, verifique:
+  - Se o servidor está rodando (`npm start`).
+  - Se o banco de dados `sei_database` foi criado corretamente.
+  - Se o navegador permite requisições para `localhost:3000`.
+- Caso queira depois rodar em outro computador, ajuste o IP no `api.js` do frontend.
+
+---
+
+# ✨ Fim do Guia
+

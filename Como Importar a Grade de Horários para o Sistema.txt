@@ -1,0 +1,118 @@
+Ótimo, Janaina!  
+Agora vamos para o **Guia Simples para Importar a Grade no Sistema** — do jeitinho que você pediu, como se fosse feito para um usuário iniciante entender rapidinho. 📚
+
+---
+
+# 📖 Guia Rápido: Como Importar a Grade de Horários para o Sistema
+
+---
+
+## 📌 O que você vai fazer?
+Agora que a grade já foi gerada no arquivo `grade_gerada.json`, vamos **importar essa grade** para dentro do sistema de gestão escolar.
+
+É fácil! Basta seguir estes passos:
+
+---
+
+## 🚀 Passo a Passo
+
+### 1. Certifique-se de que o sistema está rodando
+Antes de importar, o backend do sistema precisa estar ligado.
+
+Se ainda não estiver rodando:
+- Abra o **Prompt de Comando** (ou Terminal).
+- Vá até a pasta `gestao-escolar/backend`.
+- Rode o comando:
+
+```bash
+npm start
+```
+ou
+
+```bash
+node server.js
+```
+
+Você verá uma mensagem parecida com:
+```
+Servidor rodando na porta 3000
+```
+
+✅ Agora o sistema está pronto para receber a grade.
+
+---
+
+### 2. Acesse o sistema pelo navegador
+- Abra o navegador de internet (Google Chrome, Edge, etc.).
+- Digite na barra de endereço:
+
+```bash
+http://localhost:3000
+```
+
+Ou acesse direto a **página do Dashboard**, se já tiver feito login.
+
+---
+
+### 3. Vá para a área de Geração de Grade
+- No Dashboard, clique em **"Gerar Grade"** (ou acesse a página correspondente que usamos o script `GradeGerada.js`).
+
+---
+
+### 4. Clique no botão de "Gerar Grade"
+- A página vai chamar automaticamente o script da IA (`/api/ia/gerar`).
+- Uma nova grade de horários será gerada.
+
+Se quiser carregar a grade salva manualmente:
+- Você pode clicar em um botão que envie o conteúdo do `grade_gerada.json` para o backend (na versão atual, isso é feito automaticamente ao rodar o `gerarGrade()`).
+  
+---
+
+### 5. Verifique se a grade foi carregada
+Depois de clicar para gerar/salvar:
+- A tabela de horários será exibida automaticamente na tela.
+- Você verá linhas com:
+  - Turno
+  - Dia da semana
+  - Horário
+  - Disciplina
+  - Turma
+  - Professor
+
+✅ Se aparecer, quer dizer que **a grade foi importada com sucesso!**
+
+---
+
+## 📋 Resumo Final
+
+| Passo | O que fazer | Resultado esperado |
+|:------|:------------|:-------------------|
+| 1 | Rodar o backend (`npm start`) | Servidor online |
+| 2 | Abrir o navegador | Acessar o sistema |
+| 3 | Ir para a área de grade | Página aberta |
+| 4 | Gerar ou importar grade | Grade exibida |
+| 5 | Conferir a tabela de horários | Tudo certo! |
+
+---
+
+# 🛡️ Dicas de Verificação
+
+- **Se não aparecer nada**: verifique se o servidor está rodando.
+- **Se der erro 404**: verifique se você digitou certo o caminho no navegador.
+- **Se as informações estiverem incompletas**: talvez seja necessário gerar novamente a grade no arquivo `ia_horarios.py`.
+
+---
+
+# ✅ Pronto!
+
+**Com isso, você termina a geração e a importação da grade no sistema de gestão escolar.**  
+A IA agora organiza automaticamente o que a diretora levava semanas para fazer manualmente! 🚀
+
+---
+
+Janaina, se você quiser, eu também posso:
+- 🗂️ **Montar um fluxograma visual** para amarrar esses dois guias (gerar + importar).
+- 📄 **Montar um pequeno checklist interativo** para deixar ainda mais fácil para quem for executar.
+
+Quer que eu monte? 🎯  
+Só me dizer! 🚀✨

@@ -1,0 +1,25 @@
+
+---
+
+## ⚙️ Pré-requisitos
+
+- [Node.js](https://nodejs.org/en/) instalado
+- [MySQL](https://www.mysql.com/) instalado
+- [Python](https://www.python.org/) instalado (para rodar a IA)
+
+---
+
+## 🛠️ Instalação
+
+### 1. Banco de Dados
+
+- Importe o arquivo `sql/banco_gestao_escolar_completo.sql` no seu MySQL local.
+- Isso criará o banco `sei_database` com todas as tabelas necessárias.
+
+### 2. Backend
+
+- Vá até a pasta `/backend`.
+- Instale as dependências:
+
+```bash
+npm install
